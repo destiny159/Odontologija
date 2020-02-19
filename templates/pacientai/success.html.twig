@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <style>
+        #myButtonr {
+            box-shadow: 0px 1px 0px 0px #3dc21b;
+            background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+            background-color:#44c767;
+            border-radius:3px;
+            border:1px solid #18ab29;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:15px;
+            padding:9px 23px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #2f6627;
+            width:100%;
+        }
+        #myButtonr:hover {
+            background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+            background-color:#0688fa;
+        }
+        #myButtonr:active {
+            position:relative;
+            top:1px;
+        }
+
+        body {
+            background-image: url(http://kreativo.se/backlogin.jpg);
+            background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+        }
+
+        .container {
+            width: 600px;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        #signup {
+            padding: 0px 25px 25px;
+            background: #fff;
+            box-shadow:
+                    0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                    0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            display: table;
+            position: static;
+        }
+
+        #signup .header {
+            margin-bottom: 20px;
+        }
+
+        #signup .header h3 {
+            color: #333333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #signup .header p {
+            color: #8f8f8f;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        #signup .sep {
+            height: 1px;
+            background: #e8e8e8;
+            width: 406px;
+            margin: 0px -25px;
+        }
+
+        #signup .inputs {
+            margin-top: 25px;
+        }
+    </style>
+
+    <form method="post">
+
+        <div class="container">
+
+            <div id="signup">
+
+                <div class="header">
+
+                    <h1 style="text-align: center">Jūsų registracija sėkminga!</h1>
+
+                    <h1 style="text-align: center; font-size: 20px">Stengsimės kuo greičiau su Jumis susisiekti</h1>
+                    <br>
+                    <div style="  display: flex; align-items: center; justify-content: center">
+                        <a href="{{ path('main') }}" style="background-color: green; color: white; text-decoration: none; font-size: 20px; padding: 8px 40px 8px 40px; border-style: solid; border-width: 1px; border-color: #5cbf2a">OK</a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </form>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Klinikiniai{% endblock %}
+
+{% block body %}
+    <h1>Klinikiniai</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ klinikiniai.id }}</td>
+            </tr>
+            <tr>
+                <th>Pavadinimas</th>
+                <td>{{ klinikiniai.pavadinimas }}</td>
+            </tr>
+            <tr>
+                <th>Aprasymas</th>
+                <td>{{ klinikiniai.aprasymas }}</td>
+            </tr>
+            <tr>
+                <th>Kontaktai</th>
+                <td>{{ klinikiniai.kontaktai }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('klinikiniai_index') }}">back to list</a>
+
+    <a href="{{ path('klinikiniai_edit', {'id': klinikiniai.id}) }}">edit</a>
+
+    {{ include('klinikiniai/_delete_form.html.twig') }}
+{% endblock %}

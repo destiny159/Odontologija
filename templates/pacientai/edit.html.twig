@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Pacientai{% endblock %}
+
+{% block body %}
+    <h1>Edit Pacientai</h1>
+
+    {{ include('pacientai/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pacientai_index') }}">back to list</a>
+
+    {{ include('pacientai/_delete_form.html.twig') }}
+{% endblock %}

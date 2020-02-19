@@ -1,0 +1,218 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pagrindinis{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+            background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+            background-repeat: no-repeat;
+        }
+
+
+        .myButtonz {
+            box-shadow:inset 0px 1px 3px 0px #91b8b3;
+            background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+            background-color:#768d87;
+            border-radius:5px;
+            border:1px solid #566963;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:11px 23px;
+            text-decoration:none;
+            text-shadow:0px -1px 0px #2b665e;
+        }
+        .myButtonz:hover {
+            background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+            background-color:#6c7c7c;
+        }
+        .myButtonz:active {
+            position:relative;
+            top:1px;
+        }
+
+
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+        }
+
+
+        .containera img {
+            width: 100%;
+            opacity: 0.95;
+            height: auto;
+        }
+
+        .containera .btnb {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            position: absolute;
+            top: 77%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 1.5vw;
+            padding: 1% 1.7%;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align:middle;
+            line-height: 100%;
+        }
+        .containera .btns {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            position: absolute;
+            top: 77%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 1.5vw;
+            padding: 1% 1.7%;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align:middle;
+            line-height: 100%;
+        }
+
+        .containera .btna {
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            position: absolute;
+            top: 75%;
+            left: 27%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #555;
+            color: white;
+            font-size: 2.2vw;
+            padding: 1% 4%;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align:middle;
+            line-height: 100%;
+        }
+
+        .containera .btnb:hover {
+            background-color: black;
+        }
+
+        .containera .btna:hover {
+            background-color: black;
+        }
+
+        .containera .btns:hover {
+            background-color: black;
+        }
+
+        .mainui {
+            margin-right: 10%; margin-left: 10%; margin-bottom: 10px; background-color: white; padding-left: 5px; padding-right: 5px; border-radius: 5px;         box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        @media (max-width: 1200px) {
+            body {
+                background-size: auto;
+            }
+
+            .mainui{
+                margin-right: 3%;
+                margin-left: 3%;
+            }
+        }
+
+    </style>
+
+    <div class ="mainui">
+    <div class="container-fluid">
+        {{ include('virsus.html.twig') }}
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" id="carousel-75688" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="containera">
+                                <img class="d-block w-100" alt="Carousel Bootstrap Third" src="https://i.ibb.co/bbF1wJw/registracija.jpg">
+                                <a href="{{ path('pacientai_new') }}" class="btnb">Registracija Kaune</a>
+                                <a href="{{ path('reg_vilnius') }}" class="btns">Registracija Vilniuje</a>
+
+                            </div>
+
+                        </div>
+                        <div class="carousel-item">
+                            <div class="containera">
+                            <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://i.ibb.co/k6VgH7V/Klinikiniai.jpg" />
+                                <a href="{{ path('klinikiniai_index') }}" class="btna">Registruotis</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <a class="carousel-control-prev" href="#carousel-75688" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-75688" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+        {{ include('apacia.html.twig') }}
+    </div>
+{% endblock %}

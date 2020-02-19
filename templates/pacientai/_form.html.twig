@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<style>
+    br {
+        display: block; /* makes it have a width */
+        content: ""; /* clears default height */
+        margin-top: 5px; /* change this to whatever height you want it */
+    }
+
+    body {
+        background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+
+        font-family: "Helvetica Neue", Helvetica, Arial;
+        padding-top: 20px;
+    }
+
+    .container {
+        width: 700px;
+        max-width: 700px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    #signup {
+        padding: 0px 25px 25px;
+        background: #fff;
+        box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        display: table;
+        position: static;
+    }
+
+    #signup .header {
+        margin-bottom: 20px;
+    }
+
+    #signup .header h3 {
+        color: #333333;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    #signup .header p {
+        color: #8f8f8f;
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    #signup .sep {
+        height: 1px;
+        background: #e8e8e8;
+        width: 700px;
+        margin: 0px -25px;
+    }
+
+    #signup .inputs {
+        margin-top: 25px;
+    }
+
+    .btn {
+        background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+        background-color:#44c767;
+        border-radius:15px;
+        border:1px solid #18ab29;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:17px;
+        padding:16px 31px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #2f6627;
+        width: 100%;
+    }
+    .btn:hover {
+        background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+        background-color:#5cbf2a;
+    }
+    .btn:active {
+        position:relative;
+        top:1px;
+    }
+</style>
+
+
+<div class="container">
+
+    <div id="signup" style="margin-bottom: 10px; width: 700px; padding: 10px">
+        <div style="display:flex;justify-content:center;align-items:center;">
+            <a href="{{ path('main') }}">
+                <img style="width: 100%" alt="" src="https://i.ibb.co/fQWjMyS/banner-bigger.jpg" />
+            </a>
+        </div>
+    </div>
+
+
+    <div id="signup" style="margin-bottom: 10px; width: 700px; padding: 10px">
+    <h1 style="text-align: center;"><b>Registracijos forma Kaune</b></h1>
+    </div>
+    <div id="signup">
+
+        <div class="sep"></div>
+
+        <div class="header">
+    <br>
+            <h3>Paciento anamnezė</h3>
+
+            <p>Nusiskundimų skiltyje prašome parašyti kuo skundžiatės (pvz.: danties skausmu valgant saldų maistų) ar kokios odontologinės paslaugos pageidaujate (pvz.: norėčiau profilaktinio patikrinimo). Jeigu atsakote į pirmąjį klausimą, nusiskundimų skilties galite nepildyti.</p>
+
+        </div>
+        <div class="sep"></div>
+
+        <div class="inputs">
+            {{ form_start(form) }}
+            {{ form_label(form.gydymas) }}
+            {% for i in 0..6 %}
+            {{ form_widget(form.gydymas[i]) }} <br>
+            {% endfor %}
+            <br>
+            {{ form_label(form.nusiskundimai, "2. Nusiskundimai") }}
+            {{ form_widget(form.nusiskundimai) }}
+            <br>
+            {{ form_label(form.alergijos, "3. Ar turite alergijų? Jeigu taip, prašome parašyti kam.") }}
+            {{ form_widget(form.alergijos) }}
+            <br>
+            {{ form_label(form.bendrinesLigos, "4. Ar turite bendrinių ligų? Jeigu taip, prašome parašyti kokių.") }}
+            {{ form_widget(form.bendrinesLigos) }}
+            <br>
+            {{ form_label(form.amzius) }}
+            {% for i in 0..4 %}
+                {{ form_widget(form.amzius[i]) }} <br>
+            {% endfor %}
+            <br>
+            <div class="sep"></div>
+<br>
+            <div class="header" style="padding: 10px; margin-bottom: 10px">
+
+                <h3>Vizitui reikalinga informacija</h3>
+
+            </div>
+            <div class="sep"></div>
+<br>
+            6. Jeigu turite tikslų grafiką, kuriuo savaitės laiku Jums yra tinkamas vizitas pas odontologijos studentus - prašome pažymėti. Jeigu vizito laikas kiekvieną savaitę Jums tinka skirtingai - nežymėkite nieko.
+            <table>
+                <tr style="font-size: 11px">
+                    <td>{{ form_label(form.pirmadienis) }}<br>{{ form_widget(form.pirmadienis[0]) }}<br>{{ form_widget(form.pirmadienis[1]) }}</td>
+                    <td>{{ form_label(form.antradienis) }}<br>{{ form_widget(form.antradienis[0]) }}<br>{{ form_widget(form.antradienis[1]) }}</td>
+                    <td>{{ form_label(form.treciadienis) }}<br>{{ form_widget(form.treciadienis[0]) }}<br>{{ form_widget(form.treciadienis[1]) }}</td>
+                    <td>{{ form_label(form.ketvirtadienis) }}<br>{{ form_widget(form.ketvirtadienis[0]) }}<br>{{ form_widget(form.ketvirtadienis[1]) }}</td>
+                    <td>{{ form_label(form.penktadienis) }}<br>{{ form_widget(form.penktadienis[0]) }}<br>{{ form_widget(form.penktadienis[1]) }}</td>
+                    <td>{{ form_label(form.betKada) }}<br>{{ form_widget(form.betKada[0]) }}<br>{{ form_widget(form.betKada[1]) }}</td>
+                </tr>
+            </table>
+
+            <br>
+            {{ form_label(form.vardas, "7. Vardas") }}
+            {{ form_widget(form.vardas) }}
+            <br>
+            {{ form_label(form.numeris, "8. Jūsų kontaktinis telefono numeris") }}
+            {{ form_widget(form.numeris) }}
+            <br>
+
+            {{ form_label(form.kalbos) }}<br>{{ form_widget(form.kalbos[0]) }}<br>{{ form_widget(form.kalbos[1]) }}<br>{{ form_widget(form.kalbos[2]) }}
+            <p style="font-size: 12px; color: gray">Tai žinodami jus galės priimti ir užsienio studentai.</p>
+            <br style="padding-bottom: 10px">
+
+            <table>
+                <tr>
+                    <th>{{ form_widget(form.agreeTerms) }}</th>
+                    <th><a href="{{ path('privacy') }}">privatumo politika</a></th>
+                    <th> ir </th>
+                    <th><a href="{{ path('rules') }}">taisyklėmis</a></th>
+                </tr>
+            </table>
+            <br>
+            <button class="btn">{{ button_label|default('Pateikti') }}</button>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

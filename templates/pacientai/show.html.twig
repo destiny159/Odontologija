@@ -1,0 +1,246 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pacientai{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+        }
+
+        .container {
+
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+
+        #signup {
+            padding: 0px 25px 25px;
+            background: #fff;
+            box-shadow:
+                    0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                    0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            display: table;
+            position: static;
+        }
+
+        #signup .header {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #signup .header h3 {
+            color: #333333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #signup .header p {
+            color: #8f8f8f;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        #signup .sep {
+            height: 1px;
+            background: #e8e8e8;
+            width: 406px;
+            margin: 0px -25px;
+        }
+
+        #signup .inputs {
+            margin-top: 25px;
+        }
+    </style>
+
+<div class="container">
+
+    <div id="signup">
+
+        <div class="header">
+
+            <h3><b>{{ pacientai.vardas }}</b></h3>
+
+            <h4>{{ pacientai.numeris }}</h4>
+
+        </div>
+
+
+
+        <div class="inputs">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Treatment
+                        {% else %}
+                            Gydymas
+                        {% endif %}
+                    </th>
+                    <td>
+                        {% if app.user.kalba == "EN" %}
+                            {{ pacientai.gydymas|trans }}
+                        {% else %}
+                            {{ pacientai.gydymas }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Complaints
+                        {% else %}
+                            Nusiskundimai
+                        {% endif %}
+                    </th>
+                    <td>{{ pacientai.nusiskundimai }}</td>
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Alergies
+                        {% else %}
+                            Alergijos
+                        {% endif %}
+                    </th>
+                    <td>{{ pacientai.alergijos }}</td>
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Common diseases
+                        {% else %}
+                            Bendrinės ligos
+                        {% endif %}
+                    </th>
+                    <td>{{ pacientai.bendrinesLigos }}</td>
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Age
+                        {% else %}
+                            Amžius
+                        {% endif %}
+                    </th>
+                    <td>
+                        {% if app.user.kalba == "EN" %}
+                            {{ pacientai.amzius|trans }}
+                        {% else %}
+                            {{ pacientai.amzius }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Monday
+                        {% else %}
+                            Pirmadienis
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.pirmadienis ? pacientai.pirmadienis|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.pirmadienis ? pacientai.pirmadienis|join(', ') : '')}}</td>
+                    {% endif %}
+
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Tuesday
+                        {% else %}
+                            Antradienis
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.antradienis ? pacientai.antradienis|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.antradienis ? pacientai.antradienis|join(', ') : '')}}</td>
+                    {% endif %}
+
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Wednesday
+                        {% else %}
+                            Trečiadienis
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.treciadienis ? pacientai.treciadienis|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.treciadienis ? pacientai.treciadienis|join(', ') : '')}}</td>
+                    {% endif %}
+
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Thursday
+                        {% else %}
+                            Ketvirtadienis
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.ketvirtadienis ? pacientai.ketvirtadienis|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.ketvirtadienis ? pacientai.ketvirtadienis|join(', ') : '')}}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Friday
+                        {% else %}
+                            Penktadienis
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.penktadienis ? pacientai.penktadienis|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.penktadienis ? pacientai.penktadienis|join(', ') : '')}}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>
+                        {% if app.user.kalba == "EN" %}
+                            Any day
+                        {% else %}
+                            Bet kada
+                        {% endif %}
+                    </th>
+                    {% if app.user.kalba == "EN" %}
+                        <td>{{ (pacientai.betKada ? pacientai.betKada|join(', ') : '')|trans }}</td>
+                    {% else %}
+                        <td>{{ (pacientai.betKada ? pacientai.betKada|join(', ') : '')}}</td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            </table>
+            <a href="{{ path('pacientai_index') }}">
+                {% if app.user.kalba == "EN" %}
+                    Go back
+                {% else %}
+                    Grįžti atgal
+                {% endif %}
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

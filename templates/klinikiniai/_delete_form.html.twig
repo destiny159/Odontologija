@@ -1,0 +1,30 @@
+<style>
+    .myButton {
+        box-shadow:inset 0px 1px 0px 0px #cc8686;
+        background:linear-gradient(to bottom, #ab5b5b 5%, #a34b4b 100%);
+        background-color:#ab5b5b;
+        border:1px solid #852d2d;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:13px;
+        font-weight:bold;
+        padding:6px 12px;
+        text-decoration:none;
+    }
+    .myButton:hover {
+        background:linear-gradient(to bottom, #a34b4b 5%, #ab5b5b 100%);
+        background-color:#a34b4b;
+    }
+    .myButton:active {
+        position:relative;
+        top:1px;
+    }
+</style>
+
+<form method="post" action="{{ path('klinikiniai_delete', {'id': klinikiniai.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ klinikiniai.id) }}">
+    <button class="myButton">Pašalinti</button>
+</form>

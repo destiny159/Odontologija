@@ -1,0 +1,16 @@
+<style>
+    .btn{
+        border-radius: 5px;
+        border-width: 1px;
+        border-color: yellowgreen;
+    }
+</style>
+<form method="post" action="{{ path('pacientai_delete', {'id': pacientai.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pacientai.id) }}">
+    <button class="btn">{% if app.user.kalba == "EN" %}
+            Finish
+        {% else %}
+            Užbaigti
+        {% endif %}</button>
+</form>

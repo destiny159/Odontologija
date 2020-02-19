@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <style>
+
+        body {
+            background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+            background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+
+        }
+        .mainui {
+            margin-right: 10%; margin-left: 10%; margin-bottom: 10px; background-color: white; padding-left: 5px; padding-right: 5px; border-radius: 5px;         box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        @media (max-width: 1200px) {
+            body {
+                background-size: auto;
+            }
+
+            .mainui{
+                margin-right: 3%;
+                margin-left: 3%;
+            }
+        }
+
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid rgba(82, 146, 62, 0.84);
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: rgba(121, 225, 90, 0.33);}
+
+        #customers tr:hover {background-color: rgba(212, 232, 206, 0.75);}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+
+    <div class="mainui">
+        <div class="container-fluid">
+            {{ include('virsus.html.twig') }}
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="background-color: #f8f9fa; padding: 1% 1% 1% 1%">
+                        <h2>Administratoriai</h2>
+                        <br>
+                        <div style="margin-left: 5%">
+                            Paieška: <input id="myInput" type="text" placeholder="Search..">
+                        </div>
+                        <br>
+
+                        <table class="table" id="customers">
+                            <thead>
+                            <tr>
+                                <th>Vardas Pavardė</th>
+                                <th>El. Paštas</th>
+                                <th>Rolė</th>
+
+                                <th>LSP/ISIC</th>
+
+                                <th>Veiksmai</th>
+                            </tr>
+                            </thead>
+                            <tbody id="myTable">
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.fullName }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.role }}</td>
+
+                                    <td>
+                                        {% if user.lsp starts with 'https://' or user.lsp starts with 'http://' %}
+                                            <a href="{{ user.lsp }}">Nuotrauka</a>
+                                        {% else %}
+                                            <a href="http://{{ user.lsp }}">Nuotrauka</a>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ path('user_demote', {'id': user.id}) }}">Pažeminti</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="11">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        {{ include('apacia.html.twig') }}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>Vartotojas</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.role }}</td>
+            </tr>
+            <tr>
+                <th>FullName</th>
+                <td>{{ user.fullName }}</td>
+            </tr>
+            <tr>
+                <th>Lsp</th>
+                <td>{{ user.lsp }}</td>
+            </tr>
+            <tr>
+                <th>Kursas</th>
+                <td>{{ user.kursas }}</td>
+            </tr>
+            <tr>
+                <th>Miestas</th>
+                <td>{{ user.miestas }}</td>
+            </tr>
+            <tr>
+                <th>Kalba</th>
+                <td>{{ user.kalba }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_index') }}">Atgal</a>
+
+
+{% endblock %}

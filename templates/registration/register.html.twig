@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme registrationForm 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+
+
+{% block body %}
+    <style>
+        br {
+            display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+            margin-top: 5px; /* change this to whatever height you want it */
+        }
+        .btn {
+            background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+            background-color:#44c767;
+            border-radius:15px;
+            border:1px solid #18ab29;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:17px;
+            padding:16px 31px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #2f6627;
+            width: 100%;
+        }
+        .btn:hover {
+            background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+            background-color:#5cbf2a;
+        }
+        .btn:active {
+            position:relative;
+            top:1px;
+        }
+
+        body {
+            background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+            background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+        }
+
+        .container {
+            width: 700px;
+            max-width: 700px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        #signup {
+            padding: 0px 25px 25px;
+            background: #fff;
+            box-shadow:
+                    0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                    0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            display: table;
+            position: static;
+        }
+
+        #signup .header {
+            margin-bottom: 20px;
+        }
+
+        #signup .header h3 {
+            color: #333333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #signup .header p {
+            color: #8f8f8f;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        #signup .sep {
+            height: 1px;
+            background: #e8e8e8;
+            width: 700px;
+            margin: 0px -25px;
+        }
+
+        #signup .inputs {
+            margin-top: 25px;
+        }
+    </style>
+
+
+<div class="container">
+    <div id="signup" style="margin-bottom: 10px; width: 700px; padding: 10px">
+        <div style="display:flex;justify-content:center;align-items:center;">
+            <a href="{{ path('main') }}">
+                <img style="width: 100%" alt="" src="https://i.ibb.co/fQWjMyS/banner-bigger.jpg" />
+            </a>
+        </div>
+    </div>
+
+    <div id="signup">
+
+        <div class="header">
+
+            <h3 style="text-align: center">Studentų registracija</h3>
+
+            <p style="text-align: center">Užpildykite registracijos duomenis</p>
+
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="inputs">
+            {{ form_start(registrationForm) }}
+            <span data-toggle="tooltip" data-placement="right" title="Full name">{{ form_label(registrationForm.fullName,  "Vardas Pavardė") }}</span>
+            {{ form_widget(registrationForm.fullName) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="Email">{{ form_label(registrationForm.email, "El. Paštas") }}</span>
+            {{ form_widget(registrationForm.email) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="Course no.">{{ form_label(registrationForm.kursas, "Kurso nr.") }}</span>
+            {{ form_widget(registrationForm.kursas) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="City">{{ form_label(registrationForm.miestas, "Miestas") }}</span>
+            {{ form_widget(registrationForm.miestas) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="LSP/ISIC picture">{{ form_label(registrationForm.lsp, "LSP/ISIC nuotrauka") }}</span>
+            <p style="margin-bottom: 1px; margin-top: 1px; font-size: small">Patalpinkite į imgbb.com ir įklijuokite adresą. Norėdami užsiregistruoti, turite įrodyti, kad esate studentas.</p>
+            {{ form_widget(registrationForm.lsp) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="Language">{{ form_label(registrationForm.kalba, "Kalba") }}</span>
+            {{ form_widget(registrationForm.kalba) }}
+            <br>
+            <span data-toggle="tooltip" data-placement="right" title="Password">{{ form_label(registrationForm.plainPassword, "Slaptažodis") }}</span>
+            {{ form_widget(registrationForm.plainPassword) }}
+            <table>
+                <tr>
+                    <th data-toggle="tooltip" data-placement="right" title="I have read and agree with the privacy policy and rules ">{{ form_widget(registrationForm.agreeTerms) }}</th>
+                    <th><a href="{{ path('privacy') }}">privatumo politika</a></th>
+                    <th> ir </th>
+                    <th><a href="{{ path('rules') }}">taisyklėmis</a></th>
+                </tr>
+            </table>
+
+
+            <br>
+
+            <button class="btn">Registruotis</button>
+            {{ form_end(registrationForm) }}
+        </div>
+
+    </div>
+</div>
+
+   <br>
+    <br>
+    <br>
+    <br>
+
+
+{% endblock %}

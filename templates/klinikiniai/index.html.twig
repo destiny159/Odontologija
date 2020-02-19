@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Klinikiniai index{% endblock %}
+
+{% block body %}
+
+
+    <style>
+        body {
+            background: linear-gradient(0deg, rgba(34,161,241,0.6480742980786064) 0%, rgba(128,236,255,1) 100%) fixed;
+            background-size: cover;
+            -ms-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial;
+            padding-top: 20px;
+
+        }
+
+
+        .myButtonz {
+            box-shadow:inset 0px 1px 0px 0px #8686cc;
+            background:linear-gradient(to bottom, #665dab 5%, #4f4ca1 100%);
+            background-color:#665dab;
+            border:1px solid #2d3585;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:13px;
+            font-weight:bold;
+            padding:6px 12px;
+            text-decoration:none;
+        }
+        .myButtonz:hover {
+            background:linear-gradient(to bottom, #4f4ca1 5%, #665dab 100%);
+            background-color:#4f4ca1;
+        }
+        .myButtonz:active {
+            position:relative;
+            top:1px;
+        }
+        .collapsiblez {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: #f8f9fa;
+        }
+
+        .active, .collapsiblez:hover {
+            background-color: #555;
+        }
+
+        .contentz {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+            border-style: solid;
+            border-width: 3px;
+            border-color: #f8f9fa;
+        }
+
+        .mainui {
+            margin-right: 10%; margin-left: 10%; margin-bottom: 10px; background-color: white; padding-left: 5px; padding-right: 5px; border-radius: 5px;         box-shadow:
+                0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+                0px 4px 20px rgba( 0,0,0,0.33 );
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        @media (max-width: 1200px) {
+            body {
+                background-size: auto;
+            }
+
+            .mainui{
+                margin-right: 3%;
+                margin-left: 3%;
+            }
+        }
+
+
+    </style>
+
+    {% set kaunasCount = 0 %}
+    {% set vilniusCount = 0 %}
+
+    {% for klinikiniai in klinikiniais %}
+        {% if klinikiniai.miestas == "Kaunas" %}
+            {% set kaunasCount = kaunasCount + 1 %}
+        {% endif %}
+
+        {% if klinikiniai.miestas == "Vilnius" %}
+            {% set vilniusCount = vilniusCount + 1 %}
+        {% endif %}
+
+    {% endfor %}
+
+<div class="mainui">
+    <div class="container-fluid">
+            {{ include('virsus.html.twig') }}
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="background-color: #f8f9fa; padding: 1% 5% 1% 5%">
+                        {% if kaunasCount == 0 and vilniusCount == 0 %}
+                            <p style="font-size: 3vw"><b>Šiuo metu nevykdomi jokie klinikiniai tyrimai</b></p>
+                        {% endif %}
+                        {% if kaunasCount > 0 %}
+                            <p style="font-size: 3vw"><b>Kaune atliekami klinikiniai tyrimai:</b></p>
+                        {% for klinikiniai in klinikiniais %}
+                            {% if klinikiniai.miestas == "Kaunas" %}
+                            <button class="collapsiblez">{{ klinikiniai.pavadinimas }}</button>
+                            <div class="contentz">
+                                {% if app.user != null %}
+                                    {% if app.user.id == klinikiniai.getAtsakingas().getId() or app.user.role == "ADMIN" or app.user.role == "SUPER"%}
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                Atsakingas: {{ klinikiniai.getAtsakingas() }}<th><button class="myButtonz"><a style="text-decoration: none; color: white" href="{{ path('klinikiniai_edit', {'id': klinikiniai.id}) }}">Redaguoti</a></button></th>
+                                                <th>{{ include('klinikiniai/_delete_form.html.twig') }}</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+
+
+                                    {% endif %}
+                                {% endif %}
+                                <p style="white-space: pre-line">
+                                    {{ klinikiniai.aprasymas }}
+                                </p>
+
+                                <br>
+                                Registracijos kontaktai:
+                                <br>
+                                {{ klinikiniai.kontaktai }}
+                                <br>
+                                <br>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if vilniusCount > 0 %}
+                            <p style="font-size: 3vw"><b>Vilniuje atliekami klinikiniai tyrimai:</b></p>
+                        {% for klinikiniai in klinikiniais %}
+                            {% if klinikiniai.miestas == "Vilnius" %}
+                                <button class="collapsiblez">{{ klinikiniai.pavadinimas }}</button>
+                                <div class="contentz">
+                                    {% if app.user != null %}
+                                        {% if app.user.id == klinikiniai.getAtsakingas().getId() or app.user.role == "ADMIN" or app.user.role == "SUPER"%}
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    Atsakingas: {{ klinikiniai.getAtsakingas() }}<th><button class="myButtonz"><a style="text-decoration: none; color: white" href="{{ path('klinikiniai_edit', {'id': klinikiniai.id}) }}">Redaguoti</a></button></th>                                                    <th>{{ include('klinikiniai/_delete_form.html.twig') }}</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+
+                                        {% endif %}
+                                    {% endif %}
+                                    <p style="white-space: pre-line">
+                                        {{ klinikiniai.aprasymas }}
+                                    </p>
+
+                                    <br>
+                                    Registracijos kontaktai:
+                                    <br>
+                                    {{ klinikiniai.kontaktai }}
+                                    <br>
+                                    <br>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% if app.user != null %}
+                            {% if app.user.role != "NAUJAS" %}
+                                <a href="{{ path('klinikiniai_new') }}">Pridėti naują tyrimą</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+        </div>
+    {{ include('apacia.html.twig') }}
+    </div>
+
+
+
+    <script lang="js">
+        let coll = document.getElementsByClassName("collapsiblez");
+        let i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+{% endblock %}

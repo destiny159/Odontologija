@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Apacia{% endblock %}
+
+{% block body %}
+
+    <style>
+        #bnrs{
+            width: 30%;
+        }
+
+        @media (max-width: 1200px) {
+            #bnrs{
+                width: 60%;
+            }
+            #telui {
+               font-size: 3.1vw;
+            }
+        }
+    </style>
+
+<hr style="padding-bottom: 0px; margin-bottom: 0px">
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            {% if app.user == null %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}"><div id="telui">Stud. Registracija</div></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}"><div id="telui">Stud. prisijungimas</div></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+    <br>
+    <div class="row">
+        <div class="col-md-12" style="display:flex;justify-content:center;align-items:center;">
+            <div style="display:flex;justify-content:center;align-items:center;">
+                <img id="bnrs" alt="Bootstrap Image Preview" src="https://i.ibb.co/jbMJP1Y/footeris-did.jpg" />
+            </div>
+        </div>
+    </div>
+    <br>
+    <div style="text-align: center">
+        Copyright &copy <script>document.write( new Date().getFullYear() );</script> Studentų Odontologų Asociacija
+    </div>
+    <div style="text-align: center">
+        <a href="{{ path("privacy") }}" >Privatumo politika</a> &middot <a href="{{ path("rules") }}" >Taisyklės</a>
+    </div>
+{% endblock %}
